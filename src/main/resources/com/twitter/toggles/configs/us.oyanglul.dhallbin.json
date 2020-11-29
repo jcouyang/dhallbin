@@ -1,0 +1,9 @@
+{
+  "toggles": [
+    {
+      "id": "us.oyanglul.dhallbin.useDadJoke",
+      "description": "random generate dad joke",
+      "fraction": 0.5
+    }
+  ]
+}

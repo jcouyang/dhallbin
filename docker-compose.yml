@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  zipkin:
+    image: openzipkin/zipkin
+    ports:
+      - 9411:9411
+  db:
+    image: postgres:10
+    environment:
+      - POSTGRES_DB=$DB_NAME
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    ports:
+      - 5432:5432
