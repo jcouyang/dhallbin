@@ -1,5 +1,11 @@
+FROM alpine
+WORKDIR /home
+RUN apk add zip
+ADD https://download.newrelic.com/newrelic/java-agent/newrelic-agent/current/newrelic-java.zip ./newrelic-java.zip
+RUN unzip ./newrelic-java.zip
+
 FROM openjdk:8-jre-slim
-
-ADD ./http4s-example .
-
-CMD ./http4s-example -zipkin.initialSampleRate=1
+COPY --from=0 /home/newrelic .
+ADD ./dhallbin .
+ENV PORT 80
+CMD env JAVA_OPTS="-Xms128m -Xmx499m -javaagent:$(pwd)/newrelic.jar" ./dhallbin -port=:${PORT}

@@ -9,7 +9,7 @@ object BootstrapPlugin extends AutoPlugin {
     import sys.process._
     val logger = sbt.Keys.streams.value.log
     val res =
-      s"coursier bootstrap --standalone ${organization.value}::${name.value}:${version.value} -f -o ${name.value}" !;
+      s"cs bootstrap --standalone ${organization.value}::${name.value}:${version.value} -f -o ${name.value}" !;
     if (res == 0)
       logger.info(s"to run simply enter `./${name.value}`")
     else
