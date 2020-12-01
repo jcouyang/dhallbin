@@ -8,4 +8,4 @@ FROM openjdk:8-jre-slim
 COPY --from=0 /home/newrelic .
 ADD ./dhallbin .
 ENV PORT 80
-CMD env JAVA_OPTS="-Xms128m -Xmx499m -javaagent:$(pwd)/newrelic.jar" ./dhallbin -port=:${PORT}
+CMD env JAVA_OPTS="-Xms128m -Xmx512m -javaagent:$(pwd)/newrelic.jar" ./dhallbin -port=:${PORT}
