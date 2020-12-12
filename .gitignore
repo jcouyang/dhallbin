@@ -20,5 +20,5 @@ project/plugins/project/
 .bloop/
 .metals/
 .idea
-dhallbin
-dhallbin-db-migration
+/dhallbin
+/dhallbin-db-migration
