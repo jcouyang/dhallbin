@@ -10,20 +10,21 @@ import org.dhallj.imports.syntax._
 import cats.effect.IO
 import cats.data.Kleisli
 
-object normalize {
+object gist {
   implicit val log = Logger.get()
   object FormatMatcher extends OptionalQueryParamDecoderMatcher[String]("format")
+    object LocationMatcher extends QueryParamDecoderMatcher[String]("location")
 
-  val post = AppRoute {
-    case req @ POST -> Root / "normalize" :? FormatMatcher(format) =>
+  val get = AppRoute {
+    case GET -> Root / "gist" :? FormatMatcher(format) :? LocationMatcher(location) =>
       for {
         _ <- log.infoF("normalizing expression")
         client <- Kleisli.ask[IO, AppResource].map(_.client)
-        payload <- NT.IOtoApp(req.as[String])
-        resolved <- {
-          implicit val c = client
-          NT.IOtoApp(IO.fromEither(payload.parseExpr)
-                  .flatMap(_.resolveImports[IO])).attempt
+        resolved <- NT.IOtoApp {
+          implicit val c =client
+          c.expect[String](location).flatMap{ payload =>
+            IO.fromEither(payload.parseExpr)
+          }.flatMap(_.resolveImports[IO]).attempt
         }
         resp <- service.expr.format(resolved.map(_.normalize), format)
       } yield resp

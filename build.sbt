@@ -20,7 +20,7 @@ lazy val root = (project in file("."))
       "com.twitter"                %% "twitter-server-logback-classic" % TwitterVersion,
       "com.twitter"                %% "finagle-stats"                  % TwitterVersion,
       "us.oyanglul"                %% "dhall-generic"                  % "0.2.0",
-      "us.oyanglul"                 %% "dhall-imports"                  % "0.7.0-M1",
+      "us.oyanglul"                %% "dhall-imports"                  % "0.7.0-M1",
       "org.dhallj"                  % "dhall-yaml"                     % "0.7.0-M1",
       "ch.qos.logback"              % "logback-classic"                % "1.2.3",
       "org.scalameta"              %% "munit"                          % MunitVersion % Test,

@@ -12,7 +12,7 @@ trait AppResource
 package object resource {
   def mk(implicit ctx: ContextShift[IO]): Resource[IO, Resource[IO, AppResource]] =
     for {
-      cl <- http.mk
+      cl <- http.mk.map(http.middleware.followRedirect)
       cfg <- Resource.liftF(Config.all(cl))
     } yield Resource.make(IO {
       new AppResource {
