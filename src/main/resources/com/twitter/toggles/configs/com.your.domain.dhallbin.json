@@ -1,9 +1,0 @@
-{
-  "toggles": [
-    {
-      "id": "com.your.domain.dhallbin.useDadJoke",
-      "description": "random generate dad joke",
-      "fraction": 0.5
-    }
-  ]
-}

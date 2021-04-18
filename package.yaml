@@ -1,0 +1,49 @@
+name:                dhallbin
+version:             0.1.0.0
+github:              "jcouyang/dhallbin"
+license:             BSD3
+author:              "Author name here"
+maintainer:          "example@example.com"
+copyright:           "2021 Author name here"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+description:         Please see the README on GitHub at <https://github.com/jcouyang/dhallbin#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- dhall
+- deepseq
+- bytestring
+- mtl
+- text
+- wai
+- prettyprinter
+- http-types
+- warp
+library:
+  source-dirs: src
+
+executables:
+  dhallbin-hs-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - dhallbin
+
+tests:
+  dhallbin-hs-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - dhallbin
