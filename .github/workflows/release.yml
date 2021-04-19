@@ -8,6 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Cache
+      uses: actions/cache@v1
+      with:
+        path: ~/.stack
+        key: ${{ runner.os }}-stack-cache-${{ hashFiles('./stack.yaml.lock') }}
     - name: build
       run: stack install --local-bin-path ./bin
     - name: Deploy to Heroku
