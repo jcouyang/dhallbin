@@ -11,7 +11,7 @@ jobs:
     - name: build
       run: stack install --local-bin-path ./bin
     - name: Deploy to Heroku
-      uses: jctaveras/heroku-deploy@2.1.17
+      uses: jctaveras/heroku-deploy@v1.0.0
       with:
         email: ${{ secrets.HEROKU_EMAIL }}
         api_key: ${{ secrets.HEROKU_API_KEY }}
