@@ -27,7 +27,7 @@ library:
   source-dirs: src
 
 executables:
-  dhallbin-hs-exe:
+  dhallbin:
     main:                Main.hs
     source-dirs:         app
     ghc-options:
@@ -38,7 +38,7 @@ executables:
     - dhallbin
 
 tests:
-  dhallbin-hs-test:
+  dhallbin-test:
     main:                Spec.hs
     source-dirs:         test
     ghc-options:
