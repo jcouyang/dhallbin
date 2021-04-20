@@ -3,34 +3,18 @@
 ** Usage
    #+begin_src restclient
      # post expression to dhallbin
-     POST https://dhallbin.herokuapp.com/normalize
+     GET https://dhallbin.herokuapp.com
 
      1 + 1
 
      # post multiple lines expr
-     POST https://dhallbin.herokuapp.com/normalize
+     GET https://dhallbin.herokuapp.com
 
      let a = 1
      let b = 2
      in a + b
-
-     # post location to dhallbin
-     POST https://dhallbin.herokuapp.com/normalize?format=yaml
-
-     https://gist.github.com/jcouyang/dcd47b67523f0a644b5b8790b0de48a2/raw/016f8182cbe68650f220d676875c15964d56718b/test.dhall
-
-     # load dhall from a remote file, output format as yaml
-     GET https://dhallbin.herokuapp.com/gist?location=https://gist.github.com/jcouyang/dcd47b67523f0a644b5b8790b0de48a2/raw/016f8182cbe68650f220d676875c15964d56718b/test.dhall&format=yaml
-
-     # lazy eval a lambda
-     POST https://dhallbin.herokuapp.com/lambda?format=yaml
-     Content-Type: application/json
-
-     {
-       "lambda": "\\(x: Natural) -> x + 1",
-       "arg": "1"
-     }
    #+end_src
+
 ** Prerequisites
 - Nix ~sh <(curl -L https://nixos.org/nix/install)~ [fn:1]
 
@@ -39,19 +23,5 @@
 Start server
 #+begin_example
 ~ nix-shell
-> sbt ~reStart
-#+end_example
-
-#+begin_quote
-Let us assume all future prefix of =>= represent for command in =nix-shell=, and =~= for =bash=.
-#+end_quote
-
-You should able to see a empty list =[]= since there is nothing in database yet.
-#+begin_example
-~ curl localhost:8080/diagnostic/config
-#+end_example
-
-To run test simply
-#+begin_example
-> sbt test
+> env PORT=8080 stack run
 #+end_example
