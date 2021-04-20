@@ -1,4 +1,4 @@
-FROM alpine
+FROM ubuntu:20.04
 WORKDIR /app
 COPY "bin"  "."
-CMD "./dhallbin"
+CMD "./dhallbin-exe"

@@ -36,6 +36,7 @@ import qualified Network.HTTP.Types         as Types
 import qualified Network.Wai                as Wai
 import qualified Network.Wai.Handler.Warp   as Warp
 import qualified Prettyprinter.Render.Text  as Pretty
+import           System.Environment         (getEnv)
 import qualified System.Timeout             as Timeout
 
 toBytes :: Exception e => e -> ByteString
@@ -118,5 +119,5 @@ application status request respond = do
 main :: IO ()
 main = do
     status <- getStatus
-
-    Warp.run 3000 (application status)
+    port <- getEnv "PORT"
+    Warp.run (read port) (application status)
