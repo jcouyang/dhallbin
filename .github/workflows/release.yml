@@ -1,7 +1,7 @@
 name: Release
 on:
   push:
-    branches: [master]
+    branches: [master, heroku]
 
 jobs:
   publish:
@@ -13,8 +13,8 @@ jobs:
       with:
         path: ~/.stack
         key: ${{ runner.os }}-stack-cache-${{ hashFiles('./stack.yaml.lock') }}
-    # - name: build
-      # run: stack install --local-bin-path ./bin
+    - name: build
+      run: stack install --local-bin-path ./bin
     - name: Deploy to Heroku
       uses: jctaveras/heroku-deploy@v1.0.0
       with:
